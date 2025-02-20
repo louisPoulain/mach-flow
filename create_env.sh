@@ -10,13 +10,17 @@ ENVNAME="machflow"
 
 # Go to base conda environment
 eval "$(conda shell.bash hook)"
-source $CONDA_PREFIX/etc/profile.d/mamba.sh
+source /usr/local/Miniconda3/etc/profile.d/conda.sh
 conda activate base \
     || { echo '>>> Activating base failed.'; exit 1; }
 
-# Remove environment if exists
-conda remove --yes --name $ENVNAME --all \
-    || { echo '>>> Removing environment failed.'; exit 1; }
+# Check if the environment exists
+if ! conda info --envs | grep -q "$ENVNAME"; then
+    echo ">>> Environment '$ENVNAME' does not exist. Skipping removal."
+else
+    # Remove the environment if it exists
+    conda remove --yes --name $ENVNAME --all || { echo '>>> Removing environment failed.'; exit 1; }
+fi
 
 # Create environment
 conda create --yes --name $ENVNAME python=3.10 \
