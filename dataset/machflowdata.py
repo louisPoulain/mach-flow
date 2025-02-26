@@ -45,7 +45,7 @@ class MachFlowData(Dataset):
             warmup_size: int = 0,
             num_samples_per_epoch: int = 1,
             load_ds: bool = True,
-            seed: int = 19):
+            seed: int = 73):
 
         if load_ds:
             ds = ds.load()
@@ -232,7 +232,7 @@ class MachFlowDataModule(pl.LightningDataModule):
             norm_targets: bool = False,
             batch_size: int = 10,
             num_workers: int = 0,
-            seed: int = 19) -> None:
+            seed: int = 73) -> None:
         """Initialize MachFlowDataModule.
 
         Args:
@@ -503,7 +503,7 @@ class MachFlowDataModule(pl.LightningDataModule):
             self,
             basins: list[str],
             folds: xr.DataArray | None = None) -> tuple[list[str], list[str], list[str]]:
-        """Split and return the basins/statinos.
+        """Split and return the basins/stations.
 
         Args:
             basins (list[str]): A list of basin IDs.
