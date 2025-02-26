@@ -1,5 +1,5 @@
 # pytorch_lightning==2.1.0
-seed_everything: 99
+seed_everything: 73
 trainer:
   num_nodes: 1
   callbacks:
@@ -30,13 +30,12 @@ data:
   class_path: dataset.machflowdata.MachFlowDataModule
   init_args:
     machflow_data_path:
-    - "/data/basil/harmonized_basins.zarr/"
-    - "/mydata/machflow/basil/data/harmonized_basins.zarr/"
+    - "/net/exo/landclim/lpoulain/data/harmonized_basins_new.zarr"
     features:
     - P
     - T
     targets:
-    - Qmm
+    - Water_temperature
     stat_features:
     - 'area'
     train_window_size: 730
@@ -66,7 +65,7 @@ data:
     norm_targets: true
     batch_size: 32
     num_workers: 4
-    seed: 19
+    seed: 73
 optimizer:
   class_path: torch.optim.AdamW
   init_args:
